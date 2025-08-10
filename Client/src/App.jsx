@@ -8,7 +8,8 @@ import { Routes, Route } from 'react-router-dom';
 import About from './pages/AboutPage.jsx';
 import Footer from './components/Footer.jsx';
 import Gallery from './pages/Gallery.jsx';
-import Contact from './pages/ContantUsPage.jsx';
+import ContactUsPage from './pages/ContactUsPage.jsx';
+
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         <Route path="/about" element={<About/>}/>
         <Route path="/services" element={<EventsPage/>}/>
          <Route path="/gallery" element={<Gallery/>}/>
-         <Route path="/contact" element={<Contact/>}/>
+         <Route path="/contact" element={<ContactUsPage />}/>
       </Routes>
       <Footer />
     </div>
