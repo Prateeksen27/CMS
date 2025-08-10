@@ -1,10 +1,14 @@
 import React from "react";
 import { events } from "../assets/eventData.js";
 import EventCard from "../components/EventCard.jsx";
+import CoverImage from "../components/CoverImage.jsx";
 
 const EventsPage = () => {
   return (
-    <section className="max-w-7xl mx-auto px-4 py-12">
+  <>
+   <CoverImage/>
+   <section className="max-w-7xl mx-auto px-4 py-12">
+         
       <div className="text-center mb-10">
         <p className="uppercase tracking-wider text-sm text-yellow-600 font-medium">What We Do</p>
         <h2 className="text-3xl md:text-4xl font-bold">Premium Catering Services</h2>
@@ -19,7 +23,7 @@ const EventsPage = () => {
           />
         ))}
       </div>
-    </section>
+    </section></>
   );
 };
 

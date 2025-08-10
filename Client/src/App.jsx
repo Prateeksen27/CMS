@@ -5,6 +5,7 @@ import Header from "./components/Header.jsx";
 import LandingPage from './pages/LandingPage.jsx';
 import EventsPage from './pages/EventPage.jsx';
 import { Routes,Route } from 'react-router-dom';
+import About from './pages/About.jsx';
 
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<LandingPage/>}/>
-        <Route path="/events" element={<EventsPage/>}/>
+        <Route path="/about" element={<About/>}/>
+        <Route path="/services" element={<EventsPage/>}/>
       </Routes>
     </div>
   );
