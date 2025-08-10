@@ -17,7 +17,6 @@ const LandingPage = () => {
     <Service/>
     <GuestSpeech/>
     <Testomonial/>
-    <Footer/>
     </div>
   )
 }
