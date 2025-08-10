@@ -1,24 +1,19 @@
-import express from "express";
-import mongoose from "mongoose";
-import cors from "cors";
-import dotenv from "dotenv";
+import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import path from 'path';
 
-const app=express()
-const port = process.env.PORT || 5000
+dotenv.config();
 
-
-// Middlewares
-app.use(express.json());
+const app = express();
 app.use(cors());
-
-//API EndPoints
-// app.use('/api/users')
-
-
-
+app.use(express.json());
+app.use(cookieParser());
 app.get('/', (req, res) => {
-  res.send('API is working');
+  res.send('Welcome to the CMS Server');
 });
-
-// Start the server
-app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
