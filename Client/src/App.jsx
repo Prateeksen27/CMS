@@ -9,6 +9,7 @@ import About from './pages/AboutPage.jsx';
 import Footer from './components/Footer.jsx';
 import Gallery from './pages/Gallery.jsx';
 import ContactUsPage from './pages/ContactUsPage.jsx';
+import BookingWizard from './pages/Book.jsx';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/services" element={<EventsPage/>}/>
          <Route path="/gallery" element={<Gallery/>}/>
          <Route path="/contact" element={<ContactUsPage />}/>
+         <Route path="/book" element={< BookingWizard/>}/>
       </Routes>
       <Footer />
     </div>
