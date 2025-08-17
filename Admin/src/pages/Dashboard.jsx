@@ -4,7 +4,10 @@ const Dashboard = () => {
   const {logout} = useAuthStore()
 
   return (
-    <div>Dashboard <button onClick={logout}>Logout</button> </div>
+     <>
+     <h1>Hello</h1>
+     <button onClick={logout}>Logout</button>
+     </>
   )
 }
 

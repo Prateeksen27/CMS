@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
 export const register = async (req, res)=>{
-    console.log("Registering...");
+    // console.log("Registering...");
     const { username, password,role } = req.body;
     try {
         const existingUser = await User.findOne({ username });
@@ -22,7 +22,7 @@ export const register = async (req, res)=>{
 }
 
 export const login = async (req,res)=>{
-    console.log("Logging in...");
+    // console.log("Logging in...");
     const { username, password,role } = req.body;
     try{
         const user = await User.find({ username, role });
