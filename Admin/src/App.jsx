@@ -10,9 +10,7 @@ import Dashboard from './pages/Dashboard';
 import Swal from 'sweetalert2';
 function App() {
   const {user} = useAuthStore()
-
   return (
-
     <MantineProvider>
     <Toaster />
     <Router>

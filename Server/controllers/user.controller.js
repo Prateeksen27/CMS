@@ -22,7 +22,7 @@ export const register = async (req, res)=>{
 }
 
 export const login = async (req,res)=>{
-    // console.log("Logging in...");
+    console.log("Logging in...");
     const { username, password,role } = req.body;
     try{
         const user = await User.find({ username, role });
