@@ -10,6 +10,7 @@ import Footer from './components/Footer.jsx';
 import Gallery from './pages/Gallery.jsx';
 import ContactUsPage from './pages/ContactUsPage.jsx';
 import BookingWizard from './pages/Book.jsx';
+import Menu from './pages/Menu.jsx';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
          <Route path="/gallery" element={<Gallery/>}/>
          <Route path="/contact" element={<ContactUsPage />}/>
          <Route path="/book" element={< BookingWizard/>}/>
+         <Route path="/menu" element={< Menu/>}/>
       </Routes>
       <Footer />
     </div>
