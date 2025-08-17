@@ -382,13 +382,81 @@ function EventForm({ data, errors, onChange }) {
   );
 }
 
+
 function MenuForm({ data, errors, onChange }) {
-  const menuCategories = {
-    starters: ["Aloo Tikki", "Bruschetta", "Chilli Paneer", "Spring Rolls"],
-    maincourse: ["Paneer Butter Masala", "Chicken Curry", "Veg Biryani", "Dal Makhani"],
-    beverages: ["Mango Lassi", "Cold Coffee", "Lemon Iced Tea", "Masala Chai"],
-    desserts: ["Gulab Jamun", "Ice Cream", "Brownie", "Fruit Salad"],
-  };
+const menuCategories = {
+  starters: [
+    "Aloo Tikki",
+    "Bruschetta",
+    "Chilli Paneer",
+    "Spring Rolls",
+    "Hara Bhara Kabab",
+    "Veg Manchurian",
+    "Samosa",
+    "Cheese Balls",
+    "Stuffed Mushrooms",
+    "Paneer Tikka",
+    "Chicken Tikka",
+    "Fish Fingers",
+    "Veg Cutlet",
+    "Seekh Kebab",
+    "Nachos with Salsa",
+  ],
+
+  maincourse: [
+    "Paneer Butter Masala",
+    "Chicken Curry",
+    "Veg Biryani",
+    "Dal Makhani",
+    "Shahi Paneer",
+    "Mutton Rogan Josh",
+    "Palak Paneer",
+    "Kadhai Chicken",
+    "Chole Bhature",
+    "Malai Kofta",
+    "Egg Curry",
+    "Pav Bhaji",
+    "Rajma Chawal",
+    "Hyderabadi Biryani",
+    "Fish Curry",
+  ],
+
+  beverages: [
+    "Mango Lassi",
+    "Cold Coffee",
+    "Lemon Iced Tea",
+    "Masala Chai",
+    "Fresh Lime Soda",
+    "Hot Chocolate",
+    "Cappuccino",
+    "Espresso",
+    "Mojito",
+    "Strawberry Milkshake",
+    "Green Tea",
+    "Buttermilk (Chaas)",
+    "Orange Juice",
+    "Pineapple Shake",
+    "Coconut Water",
+  ],
+
+  desserts: [
+    "Gulab Jamun",
+    "Ice Cream",
+    "Brownie",
+    "Fruit Salad",
+    "Rasgulla",
+    "Kheer",
+    "Jalebi",
+    "Cheesecake",
+    "Chocolate Mousse",
+    "Tiramisu",
+    "Apple Pie",
+    "Donuts",
+    "Cupcakes",
+    "Shahi Tukda",
+    "Ladoo",
+  ],
+};
 
   const [activeCategory, setActiveCategory] = useState("starters");
 
@@ -398,7 +466,7 @@ function MenuForm({ data, errors, onChange }) {
       <p className="text-slate-600">Choose your menu categories and package</p>
 
       {/* Tab Buttons */}
-      <div className="mt-6 flex gap-2">
+      <div className="mt-6 flex gap-2 flex-wrap">
         {Object.keys(menuCategories).map((cat) => {
           const isActive = activeCategory === cat;
           return (
@@ -418,37 +486,50 @@ function MenuForm({ data, errors, onChange }) {
         })}
       </div>
 
-      {/* Food Items */}
-      <div className="mt-4 grid gap-2 border rounded-xl p-4 bg-white">
-        {menuCategories[activeCategory]
-          .slice()
-          .sort()
-          .map((item) => (
-            <label
-              key={item}
-              className="flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-slate-50 cursor-pointer"
-            >
-              <input
-                type="checkbox"
-                checked={data.selectedItems?.[activeCategory]?.includes(item) || false}
-                onChange={(e) => {
-                  const picked = new Set(data.selectedItems?.[activeCategory] || []);
-                  if (e.target.checked) picked.add(item);
-                  else picked.delete(item);
-                  onChange(["selectedItems", activeCategory], Array.from(picked));
-                }}
-                className="h-5 w-5 rounded border-slate-300 text-indigo-500 focus:ring-indigo-500"
-              />
-              <span className="text-slate-700">{item}</span>
-            </label>
-          ))}
-      </div>
+      {/* Food Items - Scrollable Grid */}
+      <div className="mt-4 h-60 overflow-y-auto border rounded-xl p-4 bg-white">
+  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+    {menuCategories[activeCategory]
+      .slice()
+      .sort()
+      .map((item) => {
+        const isChecked = data.selectedItems?.[activeCategory]?.includes(item) || false;
+        return (
+          <label
+            key={item}
+            className={`flex flex-row items-center justify-start gap-2 p-4 rounded-xl border cursor-pointer transition-all duration-200 ${
+              isChecked
+                ? "border-green-500 bg-green-50 shadow-sm"
+                : "border-slate-300 hover:border-indigo-400"
+            }`}
+          >
+            <input
+              type="checkbox"
+              checked={isChecked}
+              onChange={(e) => {
+                const picked = new Set(data.selectedItems?.[activeCategory] || []);
+                if (e.target.checked) picked.add(item);
+                else picked.delete(item);
+                onChange(["selectedItems", activeCategory], Array.from(picked));
+              }}
+              className="h-5 w-5 rounded border-slate-300 text-indigo-500 focus:ring-indigo-500"
+            />
+
+            <span className="text-slate-700 text-center font-medium">{item}</span>
+          </label>
+        );
+      })}
+  </div>
+</div>
+
 
       {errors.menu && <p className="text-rose-600 text-sm mt-3">{errors.menu}</p>}
 
       {/* Special Requests */}
       <div className="mt-6">
-        <label className="block font-medium text-slate-700 mb-1">Special Requests (Optional)</label>
+        <label className="block font-medium text-slate-700 mb-1">
+          Special Requests (Optional)
+        </label>
         <textarea
           rows={3}
           value={data.specialRequests}
@@ -460,6 +541,9 @@ function MenuForm({ data, errors, onChange }) {
     </div>
   );
 }
+
+
+
 
 function Row({ label, value }) {
   return (
