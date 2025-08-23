@@ -1,7 +1,8 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { User, CalendarDays, UtensilsCrossed, FileCheck2, Check } from "lucide-react";
 import { jsPDF } from "jspdf";
-
+import dayjs from "dayjs";
+import { DateInput } from '@mantine/dates';
 const STEPS = [
   { key: "personal", title: "Personal Details", subtitle: "Your contact information", icon: User },
   { key: "event", title: "Event Details", subtitle: "Event information", icon: CalendarDays },
@@ -274,15 +275,18 @@ function SectionTitle({ title, subtitle }) {
 
 function PersonalForm({ data, errors, onChange }) {
   return (
-    <div>
-      <SectionTitle title="Personal Information" subtitle="Tell us how we can reach you" />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="p-6 bg-white rounded-2xl shadow-sm border border-slate-200">
+      <SectionTitle
+        title="Personal Information"
+        subtitle="Tell us how we can reach you"
+      />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
         <Field label="Full Name" error={errors.fullName} required>
           <input
             type="text"
             value={data.fullName}
             onChange={(e) => onChange("fullName", e.target.value)}
-            className="w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500"
+            className="w-full rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all px-4 py-2 text-slate-700 placeholder-slate-400"
             placeholder="e.g., Gouranga Sahoo"
           />
         </Field>
@@ -291,7 +295,7 @@ function PersonalForm({ data, errors, onChange }) {
             type="email"
             value={data.email}
             onChange={(e) => onChange("email", e.target.value)}
-            className="w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500"
+            className="w-full rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all px-4 py-2 text-slate-700 placeholder-slate-400"
             placeholder="you@example.com"
           />
         </Field>
@@ -300,7 +304,7 @@ function PersonalForm({ data, errors, onChange }) {
             type="tel"
             value={data.phone}
             onChange={(e) => onChange("phone", e.target.value)}
-            className="w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500"
+            className="w-full rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all px-4 py-2 text-slate-700 placeholder-slate-400"
             placeholder="+91 98765 43210"
           />
         </Field>
@@ -309,16 +313,21 @@ function PersonalForm({ data, errors, onChange }) {
   );
 }
 
+
 function EventForm({ data, errors, onChange }) {
   return (
     <div>
-      <SectionTitle title="Event Information" subtitle="Tell us about your event so we can prepare accordingly" />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <SectionTitle
+        title="Event Information"
+        subtitle="Tell us about your event so we can prepare accordingly"
+      />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
         <Field label="Event Type" error={errors.type} required>
           <select
             value={data.type}
             onChange={(e) => onChange("type", e.target.value)}
-            className="w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500"
+            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition"
           >
             {[
               "Birthday Party",
@@ -334,46 +343,51 @@ function EventForm({ data, errors, onChange }) {
             ))}
           </select>
         </Field>
+
         <Field label="Number of Guests" error={errors.guests} required>
           <input
             type="number"
             min={1}
             value={data.guests}
             onChange={(e) => onChange("guests", Number(e.target.value))}
-            className="w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500"
+            className="w-full rounded-xl border border-slate-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition"
           />
         </Field>
+
         <Field label="Event Date" error={errors.date} required>
           <input
             type="date"
             value={data.date}
             onChange={(e) => onChange("date", e.target.value)}
-            className="w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500"
+            className="w-full rounded-xl border border-slate-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition"
           />
         </Field>
+
         <Field label="Event Time" error={errors.time} required>
           <input
             type="time"
             value={data.time}
             onChange={(e) => onChange("time", e.target.value)}
-            className="w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500"
+            className="w-full rounded-xl border border-slate-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition"
           />
         </Field>
+
         <Field label="Venue Address" error={errors.venue} required>
           <input
             type="text"
             value={data.venue}
             onChange={(e) => onChange("venue", e.target.value)}
-            className="w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500"
+            className="w-full rounded-xl border border-slate-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition"
             placeholder="Hall/Address, City"
           />
         </Field>
+
         <Field label="Notes (Optional)">
           <textarea
             rows={3}
             value={data.notes}
             onChange={(e) => onChange("notes", e.target.value)}
-            className="w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500"
+            className="w-full rounded-xl border border-slate-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition resize-none"
             placeholder="Any special instructions"
           />
         </Field>
@@ -381,6 +395,7 @@ function EventForm({ data, errors, onChange }) {
     </div>
   );
 }
+
 
 
 function MenuForm({ data, errors, onChange }) {

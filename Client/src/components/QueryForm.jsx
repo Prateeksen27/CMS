@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import { clientAuthStore } from "../store/clientStore";
 
 const QueryForm = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
     email: "",
     message: ""
   });
+  const {sendQuery} = clientAuthStore()
 
   const handleChange = (e) => {
     setFormData({
@@ -17,9 +19,8 @@ const QueryForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
-
+    sendQuery(formData)
     // Here you can send data to backend via fetch/axios
-    alert("Your query has been submitted. We will contact you soon!");
     setFormData({ name: "", email: "", message: "" });
   };
 
