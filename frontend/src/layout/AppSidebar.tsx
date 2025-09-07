@@ -14,6 +14,9 @@ import {
   PlugInIcon,
   TableIcon,
   UserCircleIcon,
+  SaladIcon,
+  WorkIcon,
+  StoreIcon
 } from "../icons";
 import { useSidebar } from "../context/SidebarContext";
 import SidebarWidget from "./SidebarWidget";
@@ -28,8 +31,13 @@ type NavItem = {
 const navItems: NavItem[] = [
   {
     icon: <GridIcon />,
-    name: "Dashboard",
-    subItems: [{ name: "Ecommerce", path: "/", pro: false }],
+    name: "Bookings",
+    subItems:[
+      { name: "Inquire", path: "/inquire", pro: false },
+      { name: "Booked", path: "/booked", pro: false },
+      { name: "Pending", path: "/pending", pro: false },
+      { name: "Completed", path: "/completed", pro: false }
+    ],
   },
   {
     icon: <CalenderIcon />,
@@ -37,14 +45,47 @@ const navItems: NavItem[] = [
     path: "/calendar",
   },
   {
+    name: "Employees",
     icon: <UserCircleIcon />,
-    name: "User Profile",
-    path: "/profile",
+    // subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
+    subItems:[{
+      name:"Managers",
+      path:"/manager",
+      pro:false
+    },
+    {
+      name:"Employees",
+      path:"/employees",
+      pro:false
+    },{
+      name:"Drivers",
+      path:"/driver",
+      pro:false
+    },
+    {
+      name:"Workers",
+      path:"/workers",
+      pro:false
+    }
+  ]
   },
   {
-    name: "Forms",
-    icon: <ListIcon />,
-    subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
+    icon: <SaladIcon />,
+    name: "Menu",
+    path: "/menu",
+  },
+  {
+    icon: <WorkIcon />,
+    name: "Assigned Word",
+    path: "/assigned",
+  },
+    {
+    name: "Store",
+    icon: <StoreIcon />,
+    subItems: [
+      { name: "Inventory", path: "/inventory", pro: false },
+      { name: "Assests", path: "/assests", pro: false }
+    ],
   },
   {
     name: "Tables",

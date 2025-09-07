@@ -33,7 +33,7 @@ export default function App() {
         <Routes>
           {/* Dashboard Layout */}
           <Route element={<AppLayout />}>
-            <Route index path="/" element={isAuthenticated?<Home />:<Navigate to='/signin' />} />
+            <Route index path="/" element={isAuthenticated?<Home />:<Navigate to='/signin' />}/>
 
             {/* Others Page */}
             <Route path="/profile" element={<UserProfiles />} />
@@ -61,7 +61,7 @@ export default function App() {
 
           {/* Auth Layout */}
           <Route path="/signin" element={isAuthenticated?<Navigate to='/' />:<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
+          {/* <Route path="/signup" element={<SignUp />} /> */}
 
           {/* Fallback Route */}
           <Route path="*" element={<NotFound />} />

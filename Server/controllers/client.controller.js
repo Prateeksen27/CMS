@@ -2,7 +2,6 @@ import query from "../models/query.model.js"
 
 export const sendQuery = async (req,res)=>{
     const {name,email,message} = req.body
-    console.log(req.body);
     
     try {
         const newQuery = new query({
